@@ -1,0 +1,14 @@
+{
+    "agents": [
+        "copilot",
+        "opencode",
+        "claude_code"
+    ],
+    "guidelines": true,
+    "herd_mcp": false,
+    "mcp": true,
+    "sail": false,
+    "skills": [
+        "pest-testing"
+    ]
+}
