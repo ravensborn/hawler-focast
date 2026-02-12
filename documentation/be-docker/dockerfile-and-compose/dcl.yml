@@ -1,20 +1,20 @@
 services:
   app:
-    container_name: fleet-ms-backend
+    container_name: hawler-forecast-backend
     build:
       context: .
       dockerfile: DockerfileLocal
       target: php
       args:
-        - APP_ENV=${APP_ENV:-development}
+        - APP_ENV=${APP_ENV}
     environment:
       - CONTAINER_ROLE=app
-      - APP_ENV=${APP_ENV:-development}
+      - APP_ENV=${APP_ENV}
     working_dir: /var/www
     volumes:
       - ./:/var/www:delegated
     ports:
-      - "2002:8080"
+      - "2006:8080"
     depends_on:
       database:
         condition: service_healthy
@@ -25,10 +25,10 @@ services:
     restart: unless-stopped
 
   database:
-    container_name: fleet-ms-backend-database
+    container_name: hawler-forecast-backend-database
     image: postgres:latest
     ports:
-      - "2003:5432"
+      - "2005:5432"
     environment:
       - POSTGRES_DB=${DB_DATABASE}
       - POSTGRES_USER=${DB_USERNAME}
@@ -42,7 +42,7 @@ services:
     restart: unless-stopped
 
   horizon:
-    container_name: fleet-ms-backend-horizon
+    container_name: hawler-forecast-backend-horizon
     build:
       context: .
       dockerfile: DockerfileLocal
@@ -58,7 +58,7 @@ services:
       - laravel
 
   scheduler:
-    container_name: fleet-ms-backend-scheduler
+    container_name: hawler-forecast-backend-scheduler
     build:
       context: .
       dockerfile: DockerfileLocal
@@ -75,7 +75,7 @@ services:
 
   redis:
     image: redis:alpine
-    container_name: fleet-ms-backend-redis
+    container_name: hawler-forecast-backend-redis
     command: redis-server --appendonly yes
     volumes:
       - ./documentation/be-docker/data/redis-data/data:/data
@@ -88,16 +88,6 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
-
-  mailpit:
-    image: axllent/mailpit:latest
-    container_name: fleet-ms-backend-mailpit
-    ports:
-      - "2004:8025"  # Web UI
-#      - "2005:1025"  # SMTP
-    networks:
-      - laravel
-    restart: unless-stopped
 
 volumes:
   mysql-data:

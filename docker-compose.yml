@@ -1,6 +1,6 @@
 services:
   app:
-    container_name: hawler-forcast-backend-${APP_ENV}
+    container_name: hawler-forecast-backend-${APP_ENV}
     build:
       context: .
       dockerfile: Dockerfile
@@ -23,7 +23,7 @@ services:
       - traefik.enable=true
 
   horizon:
-    container_name: hawler-forcast-backend-horizon-${APP_ENV}
+    container_name: hawler-forecast-backend-horizon-${APP_ENV}
     build:
       context: .
       dockerfile: Dockerfile
@@ -43,7 +43,7 @@ services:
     restart: unless-stopped
 
   scheduler:
-    container_name: hawler-forcast-backend-scheduler-${APP_ENV}
+    container_name: hawler-forecast-backend-scheduler-${APP_ENV}
     build:
       context: .
       dockerfile: Dockerfile
