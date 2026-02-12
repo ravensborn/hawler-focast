@@ -5,7 +5,17 @@
       "mcp__laravel-boost__database-schema",
       "Bash(find:*)",
       "Bash(git -C /var/www log --oneline -20)",
-      "mcp__laravel-boost__search-docs"
+      "mcp__laravel-boost__search-docs",
+      "Bash(php artisan make:migration:*)",
+      "Bash(php artisan make:model:*)",
+      "Bash(php artisan make:seeder:*)",
+      "Bash(php artisan migrate:*)",
+      "Bash(php artisan make:notification:*)",
+      "Bash(php artisan make:resource:*)",
+      "Bash(php artisan make:controller:*)",
+      "Bash(php artisan make:test:*)",
+      "Bash(vendor/bin/pint:*)",
+      "Bash(php artisan test:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
