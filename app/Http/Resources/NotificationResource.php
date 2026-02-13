@@ -17,8 +17,8 @@ class NotificationResource extends JsonResource
         return [
             'id' => $this->id,
             'icon' => $this->icon,
-            'title' => $this->title,
-            'description' => $this->description,
+            'title' => $this->getTranslations('title'),
+            'description' => $this->getTranslations('description'),
             'type' => $this->type,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

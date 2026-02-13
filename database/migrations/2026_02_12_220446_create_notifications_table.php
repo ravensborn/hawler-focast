@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->string('icon');
-            $table->string('title');
-            $table->text('description');
+            $table->json('title');
+            $table->json('description');
             $table->string('type');
             $table->timestamps();
         });

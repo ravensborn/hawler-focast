@@ -19,8 +19,16 @@ class NotificationFactory extends Factory
     {
         return [
             'icon' => fake()->randomElement(['info', 'warning', 'alert', 'bell', 'check']),
-            'title' => fake()->sentence(3),
-            'description' => fake()->paragraph(),
+            'title' => [
+                'en' => fake()->sentence(3),
+                'ar' => fake()->sentence(3),
+                'ku' => fake()->sentence(3),
+            ],
+            'description' => [
+                'en' => fake()->paragraph(),
+                'ar' => fake()->paragraph(),
+                'ku' => fake()->paragraph(),
+            ],
             'type' => fake()->randomElement(NotificationType::values()),
         ];
     }

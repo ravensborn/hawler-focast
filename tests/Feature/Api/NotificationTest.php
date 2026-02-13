@@ -33,7 +33,7 @@ it('returns notifications ordered by newest first', function () {
         ->and($ids->last())->toBe($old->id);
 });
 
-it('returns the correct json structure', function () {
+it('returns the correct json structure with translations', function () {
     Notification::factory()->create();
 
     $this->getJson(route('notifications.index'))
@@ -43,8 +43,8 @@ it('returns the correct json structure', function () {
                 '*' => [
                     'id',
                     'icon',
-                    'title',
-                    'description',
+                    'title' => ['en', 'ar', 'ku'],
+                    'description' => ['en', 'ar', 'ku'],
                     'type',
                     'created_at',
                     'updated_at',
@@ -69,4 +69,23 @@ it('returns valid notification type values', function () {
 it('does not require authentication', function () {
     $this->getJson(route('notifications.index'))
         ->assertSuccessful();
+});
+
+it('returns all translations for translatable fields', function () {
+    Notification::factory()->create([
+        'title' => ['en' => 'English Title', 'ar' => 'عنوان عربي', 'ku' => 'ناونیشانی کوردی'],
+        'description' => ['en' => 'English description', 'ar' => 'وصف عربي', 'ku' => 'وەسفی کوردی'],
+    ]);
+
+    $response = $this->getJson(route('notifications.index'))
+        ->assertSuccessful();
+
+    $notification = $response->json('data.0');
+
+    expect($notification['title']['en'])->toBe('English Title')
+        ->and($notification['title']['ar'])->toBe('عنوان عربي')
+        ->and($notification['title']['ku'])->toBe('ناونیشانی کوردی')
+        ->and($notification['description']['en'])->toBe('English description')
+        ->and($notification['description']['ar'])->toBe('وصف عربي')
+        ->and($notification['description']['ku'])->toBe('وەسفی کوردی');
 });

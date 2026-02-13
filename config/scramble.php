@@ -90,7 +90,7 @@ return [
      * ```
      */
     'servers' => [
-        'Local' => 'api',
+        'Local' => 'http://127.0.0.1:2006/api',
         'Prod' => 'https://hawler-forecast.time-net.net/api',
     ],
 

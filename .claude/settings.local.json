@@ -15,7 +15,10 @@
       "Bash(php artisan make:controller:*)",
       "Bash(php artisan make:test:*)",
       "Bash(vendor/bin/pint:*)",
-      "Bash(php artisan test:*)"
+      "Bash(php artisan test:*)",
+      "mcp__laravel-boost__database-query",
+      "Bash(composer show:*)",
+      "Bash(php artisan migrate:rollback:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
