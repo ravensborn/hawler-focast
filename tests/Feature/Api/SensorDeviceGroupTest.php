@@ -58,16 +58,14 @@ it('returns the correct json structure', function () {
         ->assertJsonStructure([
             'data' => [
                 '*' => [
-                    'id',
                     'name' => ['en', 'ar', 'ku'],
                     'sensorDevices' => [
                         '*' => [
-                            'id',
                             'name' => ['en', 'ar', 'ku'],
                             'latestTelemetry' => [
                                 '*' => [
                                     'value',
-                                    'createdAt',
+                                    'updatedAt',
                                     'parameterName',
                                     'parameterUnit',
                                     'parameterIcon',

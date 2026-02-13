@@ -33,9 +33,9 @@ class MapPinFactory extends Factory
             'icon' => 'weather-station',
             'type' => MapPinType::WeatherStation,
             'data' => [
-                'station_name' => $this->faker->city(),
+                'stationName' => $this->faker->city(),
                 'status' => 'active',
-                'last_reading' => $this->faker->randomFloat(1, -10, 50),
+                'lastReading' => $this->faker->randomFloat(1, -10, 50),
             ],
         ]);
     }
