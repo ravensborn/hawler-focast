@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\MapPinController;
-use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\Api\AlertController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,5 +12,5 @@ use Illuminate\Support\Facades\Route;
 //    Route::post('reset-password-with-token', [AuthController::class, 'resetPasswordWithToken'])->name('reset-password-with-token');
 // });
 
-Route::get('notifications', [NotificationController::class, 'index'])->name('notifications.index');
+Route::get('alerts', [AlertController::class, 'index'])->name('alerts.index');
 Route::get('map-pins', [MapPinController::class, 'index'])->name('map-pins.index');

@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\Models\Notification as NotificationModel;
+use App\Models\Alert;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 
@@ -13,7 +13,7 @@ class GeneralNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(public NotificationModel $notification) {}
+    public function __construct(public Alert $alert) {}
 
     /**
      * Get the notification's delivery channels.
@@ -33,10 +33,10 @@ class GeneralNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'icon' => $this->notification->icon,
-            'title' => $this->notification->title,
-            'description' => $this->notification->description,
-            'type' => $this->notification->type->value,
+            'icon' => $this->alert->icon,
+            'title' => $this->alert->title,
+            'description' => $this->alert->description,
+            'type' => $this->alert->type->value,
         ];
     }
 }

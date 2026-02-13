@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            NotificationSeeder::class,
+            AlertSeeder::class,
             MapPinSeeder::class,
         ]);
     }
