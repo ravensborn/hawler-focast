@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\MapPinController;
 use App\Http\Controllers\Api\AlertController;
+use App\Http\Controllers\Api\SensorDeviceGroupController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('alerts', [AlertController::class, 'index'])->name('alerts.index');
 Route::get('map-pins', [MapPinController::class, 'index'])->name('map-pins.index');
+Route::get('sensor-device-groups', [SensorDeviceGroupController::class, 'index'])->name('sensor-device-groups.index');

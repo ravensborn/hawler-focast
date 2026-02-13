@@ -2,14 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Sensor;
-use App\Models\SensorDeviceGroup;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\SensorDevice>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\SensorDeviceGroup>
  */
-class SensorDeviceFactory extends Factory
+class SensorDeviceGroupFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -24,9 +22,6 @@ class SensorDeviceFactory extends Factory
                 'ar' => fake()->word(),
                 'ku' => fake()->word(),
             ],
-            'sensor_id' => Sensor::factory(),
-            'sensor_device_group_id' => SensorDeviceGroup::factory(),
-            'platform_device_id' => $this->faker->unique()->uuid(),
         ];
     }
 }

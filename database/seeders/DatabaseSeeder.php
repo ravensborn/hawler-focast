@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AlertSeeder::class,
             MapPinSeeder::class,
+            SensorSeeder::class,
         ]);
     }
 }

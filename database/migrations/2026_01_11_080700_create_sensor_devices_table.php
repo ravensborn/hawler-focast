@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Sensor;
+use App\Models\SensorDeviceGroup;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,9 +16,16 @@ return new class extends Migration
         Schema::create('sensor_devices', function (Blueprint $table) {
             $table->id();
 
+            $table->json('name');
+
             $table->foreignIdFor(Sensor::class)
                 ->constrained()
                 ->cascadeOnDelete();
+
+            $table->foreignIdFor(SensorDeviceGroup::class)
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
 
             $table->string('platform_device_id')->unique();
 
