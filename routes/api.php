@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\MapPinController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -12,3 +13,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('notifications', [NotificationController::class, 'index'])->name('notifications.index');
+Route::get('map-pins', [MapPinController::class, 'index'])->name('map-pins.index');
