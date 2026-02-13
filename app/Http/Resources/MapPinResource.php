@@ -21,9 +21,7 @@ class MapPinResource extends JsonResource
             'longitude' => $this->longitude,
             'type' => $this->type,
             'data' => $this->data,
-            'expires_at' => $this->expires_at,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->created_at,
         ];
     }
 }
