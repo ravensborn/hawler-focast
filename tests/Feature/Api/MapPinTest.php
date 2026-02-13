@@ -34,9 +34,7 @@ it('returns the correct json structure', function () {
                     'longitude',
                     'type',
                     'data',
-                    'expires_at',
-                    'created_at',
-                    'updated_at',
+                    'createdAt',
                 ],
             ],
         ]);

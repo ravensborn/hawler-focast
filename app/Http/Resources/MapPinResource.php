@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Enums\MapPinType;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -20,8 +21,22 @@ class MapPinResource extends JsonResource
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'type' => $this->type,
-            'data' => $this->data,
+            'data' => $this->resolveData(),
             'createdAt' => $this->created_at,
         ];
+    }
+
+    /**
+     * @return array<string, mixed>|null
+     */
+    private function resolveData(): ?array
+    {
+        $data = $this->data;
+
+        if ($this->type === MapPinType::WeatherStation && $this->relationLoaded('sensorDeviceGroup') && $this->sensorDeviceGroup) {
+            $data['sensorDeviceGroup'] = (new SensorDeviceGroupResource($this->sensorDeviceGroup))->resolve();
+        }
+
+        return $data;
     }
 }

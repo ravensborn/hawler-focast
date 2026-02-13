@@ -6,6 +6,7 @@ use App\Enums\MapPinType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class MapPin extends Model
 {
@@ -18,6 +19,7 @@ class MapPin extends Model
         'longitude',
         'type',
         'data',
+        'sensor_device_group_id',
         'expires_at',
     ];
 
@@ -30,6 +32,11 @@ class MapPin extends Model
             'longitude' => 'decimal:7',
             'expires_at' => 'datetime',
         ];
+    }
+
+    public function sensorDeviceGroup(): BelongsTo
+    {
+        return $this->belongsTo(SensorDeviceGroup::class);
     }
 
     /**

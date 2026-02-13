@@ -7,6 +7,10 @@ enum SensorParameterUnit: string
     case Celsius = '°C';
     case RelativeHumidity = '%';
     case Kilograms = 'kg';
+    case PartsPerMillion = 'ppm';
+    case PartsPerBillion = 'ppb';
+    case MicrogramsPerCubicMeter = 'µg/m³';
+    case Millimeters = 'mm';
 
     public static function values(): array
     {

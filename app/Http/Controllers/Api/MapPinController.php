@@ -12,7 +12,10 @@ class MapPinController extends Controller
     public function index(): AnonymousResourceCollection
     {
         return MapPinResource::collection(
-            MapPin::query()->active()->get()
+            MapPin::query()
+                ->with('sensorDeviceGroup.sensorDevices.latestTelemetries.sensorParameter')
+                ->active()
+                ->get()
         );
     }
 }

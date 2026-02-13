@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Enums\MapPinType;
 use App\Models\MapPin;
-use App\Models\SensorDevice;
+use App\Models\SensorDeviceGroup;
 use Illuminate\Database\Seeder;
 
 class MapPinSeeder extends Seeder
@@ -14,44 +13,25 @@ class MapPinSeeder extends Seeder
      */
     public function run(): void
     {
-        $devices = SensorDevice::query()
-            ->with('sensor.sensorParameters')
-            ->get()
-            ->keyBy('platform_device_id');
+        $group = SensorDeviceGroup::first();
 
         $stations = [
-            ['name' => 'Erbil Citadel', 'lat' => 36.1901, 'lng' => 44.0089, 'device' => 'station-1'],
-            ['name' => 'Ankawa', 'lat' => 36.2290, 'lng' => 44.0163, 'device' => 'station-2'],
-            ['name' => 'Ainkawa Park', 'lat' => 36.2215, 'lng' => 44.0250, 'device' => 'station-3'],
-            ['name' => 'Sami Abdulrahman Park', 'lat' => 36.1980, 'lng' => 43.9930, 'device' => null],
-            ['name' => 'Erbil International Airport', 'lat' => 36.2376, 'lng' => 43.9632, 'device' => null],
+            ['name' => 'Erbil Citadel', 'lat' => 36.1901, 'lng' => 44.0089],
+            ['name' => 'Ankawa', 'lat' => 36.2290, 'lng' => 44.0163],
+            ['name' => 'Ainkawa Park', 'lat' => 36.2215, 'lng' => 44.0250],
+            ['name' => 'Sami Abdulrahman Park', 'lat' => 36.1980, 'lng' => 43.9930],
+            ['name' => 'Erbil International Airport', 'lat' => 36.2376, 'lng' => 43.9632],
         ];
 
         foreach ($stations as $station) {
-            $data = [
-                'stationName' => $station['name'] . ' Weather Station',
-                'status' => 'active',
-            ];
-
-            $device = $station['device'] ? $devices->get($station['device']) : null;
-
-            if ($device) {
-                $data['deviceId'] = $device->id;
-                $data['deviceName'] = $device->getTranslations('name');
-                $data['parameters'] = $device->sensor->sensorParameters->map(fn ($param) => [
-                    'name' => $param->name,
-                    'unit' => $param->unit,
-                    'icon' => $param->icon,
-                    'value' => fake()->randomFloat(2, 0, 100),
-                ])->toArray();
-            } else {
-                $data['lastReading'] = rand(-5, 45) + rand(0, 9) / 10;
-            }
-
             MapPin::factory()->weatherStation()->create([
                 'latitude' => $station['lat'],
                 'longitude' => $station['lng'],
-                'data' => $data,
+                'sensor_device_group_id' => $group?->id,
+                'data' => [
+                    'stationName' => $station['name'] . ' Weather Station',
+                    'status' => 'active',
+                ],
             ]);
         }
 
