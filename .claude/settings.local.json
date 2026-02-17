@@ -22,7 +22,10 @@
       "mcp__laravel-boost__get-absolute-url",
       "Bash(php artisan migrate:fresh:*)",
       "Bash(php artisan db:seed:*)",
-      "mcp__laravel-boost__tinker"
+      "mcp__laravel-boost__tinker",
+      "mcp__laravel-boost__list-routes",
+      "Bash(composer dump-autoload:*)",
+      "mcp__laravel-boost__database-connections"
     ]
   },
   "enableAllProjectMcpServers": true,
